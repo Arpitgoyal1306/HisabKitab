@@ -15,7 +15,7 @@ function About() {
 
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="card p-6">
-          <p className="eyebrow">Why it exists</p>
+          <p className="eyebrow font-bold">Why it exists</p>
           <h2 className="text-xl font-semibold mt-2">
             A focused expense companion
           </h2>
@@ -25,8 +25,8 @@ function About() {
           </p>
         </div>
         <div className="card p-6">
-          <p className="eyebrow">Principles</p>
-          <h2 className="text-xl font-semibold mt-2">How it is designed</h2>
+          <p className="eyebrow font-bold">Principles</p>
+          <h2 className="text-xl font-semibold mt-2 ">How it is designed</h2>
           <ul className="mt-4 space-y-3 text-muted">
             <li>Clarity before complexity.</li>
             <li>Quick capture, thoughtful review.</li>
@@ -37,7 +37,8 @@ function About() {
 
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="card p-6">
-          <h2 className="text-xl font-semibold mb-3">Key Features</h2>
+          <p className="eyebrow font-bold">Key Features</p>
+          <h2 className="text-xl font-semibold mt-2 ">Key Features</h2>
           <ul className="space-y-2 text-muted">
             <li>Add, edit, and delete expenses</li>
             <li>Budget tracking with progress bar</li>
@@ -50,7 +51,7 @@ function About() {
         </div>
 
         <div className="card p-6">
-          <h2 className="text-xl font-semibold mb-3">Technologies Used</h2>
+          <h2 className="text-xl font-semibold mb-3 font-bold">Technologies Used</h2>
           <ul className="space-y-2 text-muted">
             <li>React</li>
             <li>JavaScript (ES6+)</li>
@@ -62,7 +63,7 @@ function About() {
       </section>
 
       <section className="card-muted p-6">
-        <p className="eyebrow">Data & privacy</p>
+        <p className="eyebrow font-bold">Data & privacy</p>
         <h2 className="text-xl font-semibold mt-2">
           Everything stays on your device
         </h2>
