@@ -6,11 +6,9 @@ import ExpenseItem from "./ExpenseItem";
 function ExpenseList({ expenses, setExpenses, allExpenses }) {
   if (expenses.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 p-10 text-center">
-        <p className="text-slate-600 dark:text-slate-300 text-lg font-medium">
-          No expenses found.
-        </p>
-        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+      <div className="card-dashed p-6 text-center">
+        <p className="text-lg font-medium">No expenses found.</p>
+        <p className="text-muted text-sm mt-1">
           Try adjusting your search or add a new expense.
         </p>
       </div>

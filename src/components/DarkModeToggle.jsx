@@ -1,35 +1,38 @@
 import { useState, useEffect } from "react";
 
 function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  // Load saved theme
-
-  useEffect(() => {
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === "undefined") return false;
     const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark") {
-      setDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  // Apply theme
+    if (savedTheme === "dark") return true;
+    if (savedTheme === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
+
+  useEffect(() => {
+    const handleStorage = (event) => {
+      if (event.key === "theme") {
+        setDarkMode(event.newValue === "dark");
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+    };
+  }, []);
 
   return (
     <button
-      onClick={() => setDarkMode(!darkMode)}
-      className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-100 text-xs font-medium hover:bg-slate-700 transition dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-white"
+      onClick={() => setDarkMode((prev) => !prev)}
+      className="btn btn-secondary btn-sm"
+      aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
       {darkMode ? "Light Mode" : "Dark Mode"}
     </button>

@@ -5,21 +5,27 @@ import Footer from "./Footer";
 function Layout() {
   const location = useLocation();
 
-  const navItem =
-    "flex items-center gap-2 px-4 py-2.5 rounded-lg transition font-medium text-sm whitespace-nowrap";
-  const active = "bg-blue-600 text-white shadow-sm";
-  const inactive = "text-slate-300 hover:bg-slate-800 hover:text-white";
+  const navItem = "nav-item whitespace-nowrap";
+  const active = "nav-item-active";
+  const inactive = "nav-item-inactive";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
+    <div className="min-h-screen">
       {/* Sidebar */}
-      <aside className="w-full md:fixed md:inset-y-0 md:left-0 md:w-64 bg-slate-900 text-white border-b md:border-b-0 md:border-r border-slate-800 z-20">
-        <div className="p-5 border-b border-slate-800">
-          <h1 className="text-xl font-bold text-white">HisabKitab</h1>
-          <p className="text-slate-400 text-xs mt-1">Smart Expense Tracker</p>
+      <aside className="sidebar w-full md:fixed md:inset-y-0 md:left-0 md:w-72 border-b md:border-b-0 md:border-r z-20">
+        <div className="px-5 py-6 border-b border-[var(--border)]">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-[var(--primary-soft)] text-[var(--primary)] flex items-center justify-center font-semibold">
+              HK
+            </div>
+            <div>
+              <h1 className="text-lg font-semibold">HisabKitab</h1>
+              <p className="text-sm text-muted">Smart Expense Tracker</p>
+            </div>
+          </div>
         </div>
 
-        <nav className="flex md:flex-col gap-2 px-3 py-3 md:py-4 overflow-x-auto md:overflow-visible">
+        <nav className="flex md:flex-col gap-2 px-4 py-4 overflow-x-auto md:overflow-visible">
           <Link
             to="/"
             className={`${navItem} ${location.pathname === "/" ? active : inactive}`}
@@ -46,20 +52,18 @@ function Layout() {
           </Link>
         </nav>
 
-        <div className="flex md:hidden px-4 pb-4 pt-2 border-t border-slate-800 items-center justify-between">
-          <span className="text-xs text-slate-500">v1.0</span>
+        <div className="flex md:hidden px-4 pb-4 pt-2 border-t border-[var(--border)] items-center justify-between">
           <DarkModeToggle />
         </div>
 
-        <div className="hidden md:flex p-4 border-t border-slate-800 items-center justify-between">
-          <span className="text-xs text-slate-500">v1.0</span>
+        <div className="hidden md:flex p-4 border-t border-[var(--border)] items-center justify-between">
           <DarkModeToggle />
         </div>
       </aside>
 
       {/* Main area */}
-      <div className="md:ml-64 flex flex-col min-h-screen">
-        <main className="flex-1 px-4 sm:px-6 lg:px-10 py-8">
+      <div className="md:ml-72 flex flex-col min-h-screen">
+        <main className="flex-1 px-4 sm:px-6 lg:px-8 py-8">
           <div className="max-w-6xl mx-auto">
             <Outlet />
           </div>

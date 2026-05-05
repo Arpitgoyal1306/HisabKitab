@@ -1,11 +1,9 @@
 function AverageExpense({ expenses }) {
   if (!expenses || expenses.length === 0) {
     return (
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-          Average Expense
-        </h2>
-        <p className="text-slate-600 dark:text-slate-400">No expenses yet.</p>
+      <div className="card p-6">
+        <h2 className="text-lg font-semibold mb-2">Average Expense</h2>
+        <p className="text-muted">No expenses yet.</p>
       </div>
     );
   }
@@ -38,27 +36,22 @@ function AverageExpense({ expenses }) {
     }).format(value);
 
   return (
-    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-      <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
-        Average Expense
-      </h2>
+    <div className="card p-6 space-y-3">
+      <div>
+        <p className="eyebrow">Average</p>
+        <h2 className="text-lg font-semibold mt-2">Average Expense</h2>
+      </div>
 
-      <p className="text-lg font-semibold text-slate-900 dark:text-slate-200">
+      <p className="text-lg font-semibold">
         {formatCurrency(average)} per transaction
       </p>
 
-      <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-        Based on {transactionCount} expenses
-      </p>
+      <p className="text-sm text-muted">Based on {transactionCount} expenses</p>
 
-      <div className="mt-4">
-        <p className="text-slate-500 dark:text-slate-400">
-          Average spending per day
-        </p>
+      <div>
+        <p className="text-muted">Average spending per day</p>
 
-        <p className="text-lg font-semibold text-slate-900 dark:text-slate-200">
-          {formatCurrency(averagePerDay)}
-        </p>
+        <p className="text-lg font-semibold">{formatCurrency(averagePerDay)}</p>
       </div>
     </div>
   );

@@ -1,11 +1,9 @@
 function HighestExpense({ expenses }) {
   if (!expenses || expenses.length === 0) {
     return (
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-          Highest Expense
-        </h2>
-        <p className="text-slate-600 dark:text-slate-400">No expenses yet.</p>
+      <div className="card p-6">
+        <h2 className="text-lg font-semibold mb-2">Highest Expense</h2>
+        <p className="text-muted">No expenses yet.</p>
       </div>
     );
   }
@@ -34,30 +32,21 @@ function HighestExpense({ expenses }) {
     }).format(value);
 
   return (
-    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-      <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
-        Highest Expense
-      </h2>
+    <div className="card p-6 space-y-2">
+      <div>
+        <p className="eyebrow">Peak</p>
+        <h2 className="text-lg font-semibold mt-2">Highest Expense</h2>
+      </div>
 
-      <p className="font-semibold text-lg text-slate-900 dark:text-slate-200">
-        {highest.title}
-      </p>
+      <p className="font-semibold text-lg">{highest.title}</p>
 
-      <p className="text-slate-700 dark:text-slate-300">
-        Amount: {formatCurrency(highest.amount)}
-      </p>
+      <p>Amount: {formatCurrency(highest.amount)}</p>
 
-      <p className="text-sm text-slate-500 dark:text-slate-400">
-        Category: {highest.category}
-      </p>
+      <p className="text-sm text-muted">Category: {highest.category}</p>
 
-      <p className="text-sm text-slate-500 dark:text-slate-400">
-        Date: {highest.date}
-      </p>
+      <p className="text-sm text-muted">Date: {highest.date}</p>
 
-      <p className="text-sm text-blue-600 dark:text-blue-400 mt-2">
-        {percentage}% of total spending
-      </p>
+      <span className="badge">{percentage}% of total spending</span>
     </div>
   );
 }

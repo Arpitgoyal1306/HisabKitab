@@ -27,6 +27,8 @@ function Dashboard() {
     (sum, exp) => sum + Number(exp.amount || 0),
     0,
   );
+  const transactionCount = expenses.length;
+  const totalSpentFormatted = totalSpent.toLocaleString("en-IN");
 
   // Apply search, filter, sort to expenses for the list
   const filteredExpenses = expenses
@@ -47,49 +49,67 @@ function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-        <h1 className="text-3xl font-semibold text-slate-900 dark:text-white">
-          Dashboard
-        </h1>
-        <p className="text-slate-600 dark:text-slate-400 mt-1">
-          Track and manage your expenses in one place.
-        </p>
-      </div>
+      <section className="card-hero p-6 sm:p-8">
+        <div className="flex flex-col lg:flex-row lg:items-end gap-6">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Dashboard</p>
+            <h1 className="text-3xl sm:text-4xl font-semibold">
+              Your money, organized
+            </h1>
+            <p className="text-muted mt-2">
+              Track, plan, and adjust your spending with a clear view of every
+              transaction.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-6 lg:ml-auto">
+            <div>
+              <p className="label">Total spent</p>
+              <p className="text-2xl font-semibold">₹ {totalSpentFormatted}</p>
+            </div>
+            <div>
+              <p className="label">Transactions</p>
+              <p className="text-2xl font-semibold">{transactionCount}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Summary + Budget side by side */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="card p-6">
           <SummaryCard
             totalSpent={totalSpent}
-            transactionCount={expenses.length}
+            transactionCount={transactionCount}
           />
         </div>
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
+        <div className="card p-6">
           <Budget
             budget={budget}
             setBudget={setBudget}
             totalSpent={totalSpent}
           />
         </div>
-      </div>
+      </section>
 
-      {/* Budget Status - only shows when budget is set */}
       <BudgetStatus budget={budget} totalSpent={totalSpent} />
 
-      {/* Add Expense Form + Recent Transactions side by side */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ExpenseForm expenses={expenses} setExpenses={setExpenses} />
         <RecentTransactions expenses={expenses} />
-      </div>
+      </section>
 
-      {/* Category Preview */}
       <CategoryPreview expenses={expenses} />
 
-      {/* Search + Filter + Sort in one row */}
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-          Search, Filter, and Sort
-        </h2>
+      <section className="card p-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <div>
+            <p className="eyebrow">Find</p>
+            <h2 className="text-lg font-semibold">Search, filter, and sort</h2>
+            <p className="text-muted text-sm mt-1">
+              Narrow down the list before you edit or review.
+            </p>
+          </div>
+          <span className="badge">{filteredExpenses.length} items</span>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <Filter
@@ -98,26 +118,23 @@ function Dashboard() {
           />
           <Sort sortOption={sortOption} setSortOption={setSortOption} />
         </div>
-      </div>
+      </section>
 
-      {/* Expense List */}
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
-            All Expenses
-          </h2>
-          <span className="text-sm text-slate-500 dark:text-slate-400">
-            {filteredExpenses.length} items
-          </span>
+      <section className="card p-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <p className="eyebrow">Ledger</p>
+            <h2 className="text-xl font-semibold">All Expenses</h2>
+          </div>
+          <span className="badge">{filteredExpenses.length} items</span>
         </div>
         <ExpenseList
           expenses={filteredExpenses}
           setExpenses={setExpenses}
           allExpenses={expenses}
         />
-      </div>
+      </section>
 
-      {/* Reset */}
       <ResetButton setExpenses={setExpenses} setBudget={setBudget} />
     </div>
   );

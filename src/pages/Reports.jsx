@@ -15,17 +15,16 @@ function Reports() {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <section className="card-hero p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold text-slate-900 dark:text-white">
-            Financial Reports
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Overview of your spending patterns
+          <p className="eyebrow">Reports</p>
+          <h1 className="text-3xl font-semibold">Financial Reports</h1>
+          <p className="text-muted mt-1">
+            Overview of your spending patterns and trends.
           </p>
         </div>
         <ExportButton expenses={expenses} />
-      </div>
+      </section>
 
       {/* Weekly + Monthly side by side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

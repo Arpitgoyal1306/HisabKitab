@@ -14,11 +14,8 @@ function ResetButton({ setExpenses, setBudget }) {
   };
 
   return (
-    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-      <button
-        onClick={handleReset}
-        className="w-full bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition font-medium"
-      >
+    <div className="card p-6">
+      <button onClick={handleReset} className="btn btn-danger w-full">
         Reset All Data
       </button>
     </div>

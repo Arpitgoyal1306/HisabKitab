@@ -7,18 +7,18 @@ function BudgetStatus({ budget, totalSpent }) {
     return null;
   }
 
-  return (
-    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
-      <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-        Budget Status
-      </h2>
+  const statusClass =
+    remaining >= 0 ? "callout callout-success" : "callout callout-danger";
 
+  return (
+    <div className={statusClass}>
+      <p className="eyebrow">Budget status</p>
       {remaining >= 0 ? (
-        <p className="text-green-600 dark:text-green-400">
+        <p className="mt-2 text-sm">
           You are within your budget. Remaining: ₹ {remaining}
         </p>
       ) : (
-        <p className="text-red-600 dark:text-red-400">
+        <p className="mt-2 text-sm">
           You have exceeded your budget. Overspent: ₹ {Math.abs(remaining)}
         </p>
       )}

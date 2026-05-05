@@ -14,39 +14,30 @@ function SummaryCard({ totalSpent, transactionCount }) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
-        Summary
-      </h2>
+      <div>
+        <p className="eyebrow">Overview</p>
+        <h2 className="text-xl font-semibold mt-2">Summary</h2>
+      </div>
 
       {/* Total Expenses */}
       <div>
-        <p className="text-slate-500 dark:text-slate-400">Total Expenses</p>
+        <p className="text-muted">Total Expenses</p>
 
-        <h3 className="text-3xl font-semibold text-slate-900 dark:text-white">
-          {formatCurrency(safeTotal)}
-        </h3>
+        <h3 className="text-3xl font-semibold">{formatCurrency(safeTotal)}</h3>
       </div>
 
       {/* Transactions */}
       <div className="mt-5">
-        <p className="text-slate-500 dark:text-slate-400">
-          Number of Transactions
-        </p>
+        <p className="text-muted">Number of Transactions</p>
 
-        <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
-          {safeCount}
-        </h3>
+        <h3 className="text-2xl font-semibold">{safeCount}</h3>
       </div>
 
       {/* Average */}
       <div className="mt-5">
-        <p className="text-slate-500 dark:text-slate-400">
-          Average per Transaction
-        </p>
+        <p className="text-muted">Average per Transaction</p>
 
-        <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
-          {formatCurrency(average)}
-        </h3>
+        <h3 className="text-xl font-semibold">{formatCurrency(average)}</h3>
       </div>
     </div>
   );

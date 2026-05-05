@@ -66,42 +66,36 @@ function ExpenseItem({ exp, expenses, setExpenses }) {
     }).format(value);
 
   return (
-    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4 sm:p-5">
+    <div className="card p-4 sm:p-6">
       {isEditing ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
-            <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">
-              Title
-            </label>
+            <label className="label block mb-2">Title</label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+              className="input"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">
-              Amount
-            </label>
+            <label className="label block mb-2">Amount</label>
             <input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+              className="input"
               min="1"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">
-              Category
-            </label>
+            <label className="label block mb-2">Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+              className="input"
             >
               <option value="">Select</option>
               <option value="Food">Food</option>
@@ -112,14 +106,12 @@ function ExpenseItem({ exp, expenses, setExpenses }) {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">
-              Date
-            </label>
+            <label className="label block mb-2">Date</label>
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+              className="input"
             />
           </div>
 
@@ -127,14 +119,14 @@ function ExpenseItem({ exp, expenses, setExpenses }) {
             <button
               type="button"
               onClick={handleSave}
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+              className="btn btn-primary"
             >
               Save
             </button>
             <button
               type="button"
               onClick={handleCancel}
-              className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition"
+              className="btn btn-secondary"
             >
               Cancel
             </button>
@@ -143,28 +135,26 @@ function ExpenseItem({ exp, expenses, setExpenses }) {
       ) : (
         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
           <div className="flex-1">
-            <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">
-              {exp.title}
-            </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-lg font-semibold">{exp.title}</p>
+            <p className="text-sm text-muted">
               {exp.category} · {exp.date}
             </p>
           </div>
           <div className="flex items-center justify-between sm:justify-end gap-4">
-            <span className="text-base font-semibold text-slate-900 dark:text-slate-100">
+            <span className="text-base font-semibold">
               {formatCurrency(exp.amount)}
             </span>
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition"
+              className="btn btn-secondary btn-sm"
             >
               Edit
             </button>
             <button
               type="button"
               onClick={handleDelete}
-              className="px-3 py-1.5 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
+              className="btn btn-danger btn-sm"
             >
               Delete
             </button>
