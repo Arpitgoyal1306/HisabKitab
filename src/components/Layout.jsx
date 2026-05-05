@@ -15,9 +15,11 @@ function Layout() {
       <aside className="sidebar w-full md:fixed md:inset-y-0 md:left-0 md:w-72 border-b md:border-b-0 md:border-r z-20">
         <div className="px-5 py-6 border-b border-[var(--border)]">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-[var(--primary-soft)] text-[var(--primary)] flex items-center justify-center font-semibold">
-              HK
-            </div>
+            <img 
+              src="/Logo.png" 
+              alt="HisabKitab Logo" 
+              className="h-10 w-10 rounded-xl object-cover"
+            />
             <div>
               <h1 className="text-lg font-semibold">HisabKitab</h1>
               <p className="text-sm text-muted">Smart Expense Tracker</p>
