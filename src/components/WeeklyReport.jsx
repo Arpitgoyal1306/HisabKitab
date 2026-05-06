@@ -8,31 +8,31 @@ function WeeklyReport({ expenses }) {
     );
   }
 
-  const today = new Date();
+  // Get YYYY-MM-DD string in LOCAL time (en-CA locale always returns this format)
+  function toDateStr(date) {
+    return date.toLocaleDateString("en-CA");
+  }
+
+  const todayStr = toDateStr(new Date());
 
   const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(today.getDate() - 7);
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+  const weekStartStr = toDateStr(sevenDaysAgo);
 
-  // Filter last 7 days safely
-  const weeklyExpenses = expenses.filter((exp) => {
-    if (!exp.date) return false;
-
-    const expenseDate = new Date(exp.date);
-
-    return expenseDate >= sevenDaysAgo && expenseDate <= today;
-  });
-
-  // Total spent
-  const weeklyTotal = weeklyExpenses.reduce(
-    (sum, exp) => sum + Number(exp.amount),
-    0,
+  // Simple string comparison — works perfectly for YYYY-MM-DD format
+  const weeklyExpenses = expenses.filter(
+    (exp) => exp.date && exp.date >= weekStartStr && exp.date <= todayStr
   );
 
-  // Number of transactions
-  const transactionCount = weeklyExpenses.length;
+  const weeklyTotal = weeklyExpenses.reduce(
+    (sum, exp) => sum + Number(exp.amount),
+    0
+  );
 
-  // Average per day
+  const transactionCount = weeklyExpenses.length;
   const averagePerDay = transactionCount > 0 ? Math.round(weeklyTotal / 7) : 0;
+  const averagePerTransaction =
+    transactionCount > 0 ? Math.round(weeklyTotal / transactionCount) : 0;
 
   return (
     <div className="card p-6 space-y-4">
@@ -54,6 +54,11 @@ function WeeklyReport({ expenses }) {
       <div>
         <p className="text-muted">Average spending per day</p>
         <h3 className="text-2xl font-semibold">₹ {averagePerDay}</h3>
+      </div>
+
+      <div>
+        <p className="text-muted">Average per transaction</p>
+        <h3 className="text-2xl font-semibold">₹ {averagePerTransaction}</h3>
       </div>
     </div>
   );

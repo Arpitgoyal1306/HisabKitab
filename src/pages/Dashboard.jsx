@@ -31,7 +31,8 @@ function Dashboard() {
   const transactionCount = expenses.length;
   const numericBudget = Number(budget) || 0;
   const remainingBudget = numericBudget - totalSpent;
-  const percentageUsed = numericBudget > 0 ? (totalSpent / numericBudget) * 100 : 0;
+  const percentageUsed =
+    numericBudget > 0 ? (totalSpent / numericBudget) * 100 : 0;
   const totalSpentFormatted = totalSpent.toLocaleString("en-IN");
 
   // Apply search, filter, sort to expenses for the list
@@ -46,7 +47,8 @@ function Dashboard() {
     })
     .sort((a, b) => {
       if (sortOption === "amount") return Number(b.amount) - Number(a.amount);
-      if (sortOption === "title") return (a.title || "").localeCompare(b.title || "");
+      if (sortOption === "title")
+        return (a.title || "").localeCompare(b.title || "");
       // default: date newest first
       return new Date(b.date) - new Date(a.date);
     });
@@ -86,11 +88,7 @@ function Dashboard() {
           />
         </div>
         <div className="card p-6">
-          <Budget
-            budget={budget}
-            setBudget={setBudget}
-            expenses={expenses}
-          />
+          <Budget budget={budget} setBudget={setBudget} expenses={expenses} />
         </div>
       </section>
 
