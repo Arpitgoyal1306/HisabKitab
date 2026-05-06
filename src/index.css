@@ -114,6 +114,12 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-strong);
   }
 
   .card-muted {
