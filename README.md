@@ -66,3 +66,33 @@ The goal of **HisabKitab** is to provide a simple and efficient expense tracking
 - User authentication  
 - Cloud database integration  
 - Mobile responsiveness enhancements  
+
+---
+
+## Quick start
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Run the dev server:
+
+```bash
+npm run dev
+```
+
+Open the URL printed by Vite (usually http://localhost:5173).
+
+## Contributing
+
+- Fork the repo and create a branch for your change.
+- Keep commits small and focused.
+- Open a Pull Request and request a review.
+
+## Notes
+
+- Data is stored locally in your browser's Local Storage (keys: `expenses`, `budget`).
+- If you plan to add remote sync, document privacy and encryption decisions.
+
