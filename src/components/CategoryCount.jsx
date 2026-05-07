@@ -19,7 +19,7 @@ function CategoryCount({ expenses }) {
       categoryCounts[exp.category] = 1;
     }
   });
-
+  
   return (
     <div className="card p-6">
       <h2 className="text-lg font-semibold mb-3">Expense Count by Category</h2>
